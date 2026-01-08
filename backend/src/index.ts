@@ -1,13 +1,22 @@
 import express from "express";
 import cors from "cors";
-import { testConnection } from "./lib/mysql";
+import { DatabasePool } from "./lib/mysql";
 import routes from "./routes/routes";
 import { errorHandler } from "./utils/error-handler";
 import cookieParser from 'cookie-parser';
 
 if (process.env.NODE_ENV !== "production") {
   process.loadEnvFile?.();
-  testConnection();
+  (async () => {
+    try {
+      const db = DatabasePool.getInstance();
+      await db.testConnection();
+      console.log('DB lista');
+    } catch (error) {
+      console.error('DB falló:', error);
+      process.exit(1); 
+    }
+  })();
 }
 
 const app = express();
@@ -45,7 +54,7 @@ app.use("/api/v1", routes);
 
 app.use(errorHandler);
 
-if(process.env.NODE_ENV !== 'test'){
+if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
   });
