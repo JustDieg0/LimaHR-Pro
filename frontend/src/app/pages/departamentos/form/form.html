@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+      <!-- Campo Nombre -->
+      <div class="flex flex-col gap-2">
+        <label for="nombre" class="font-semibold text-gray-700">
+          Nombre <span class="text-red-500">*</span>
+        </label>
+        <input 
+          pInputText 
+          id="nombre" 
+          formControlName="nombre"
+          placeholder="Ej: Recursos Humanos"
+          class="w-full"
+          [class.ng-invalid]="isFieldInvalid('nombre')"
+          [class.ng-dirty]="isFieldInvalid('nombre')">
+        
+        @if (isFieldInvalid('nombre')) {
+          <small class="text-red-500 text-xs">
+            @if (form.get('nombre')?.errors?.['required']) {
+              El nombre es requerido
+            }
+            @if (form.get('nombre')?.errors?.['minlength']) {
+              Mínimo 3 caracteres
+            }
+          </small>
+        }
+      </div>
+
+      <!-- Campo Jefe -->
+      <div class="flex flex-col gap-2">
+        <label for="jefe_id" class="font-semibold text-gray-700">
+          Jefe del Departamento
+        </label>
+        <input 
+          pInputText 
+          id="jefe_id" 
+          formControlName="jefe_id"
+          placeholder="Ej: 1"
+          class="w-full">
+        <small class="text-gray-500 text-xs">Campo opcional</small>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button 
+          label="Cancelar" 
+          icon="pi pi-times"
+          severity="secondary"
+          [text]="true"
+          (onClick)="onCancel()"
+          type="button">
+        </p-button>
+        <p-button 
+          [label]="isEditMode ? 'Actualizar' : 'Crear'"
+          icon="pi pi-check"
+          severity="success"
+          type="submit"
+          [disabled]="form.invalid"
+          [loading]="loading">
+        </p-button>
+      </div>
+    </form>

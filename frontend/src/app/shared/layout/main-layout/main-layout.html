@@ -1,0 +1,46 @@
+<div class="flex flex-col h-screen overflow-hidden">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg z-50">
+    <div class="flex items-center justify-between px-6 py-4">
+      <p-button 
+        icon="pi pi-bars" 
+        (onClick)="toggleSidebar()"
+        [text]="true"
+        [rounded]="true"
+        severity="secondary">
+      </p-button>
+      <h1 class="flex items-center gap-2 text-2xl font-bold m-0">
+        <i class="pi pi-briefcase text-3xl"></i>
+        LimaHR Pro
+      </h1>
+      <div class="flex gap-2">
+        <p-button icon="pi pi-bell" [text]="true" badge="3"></p-button>
+        <p-button icon="pi pi-user" [text]="true"></p-button>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    <aside 
+      class="w-72 bg-white shadow-xl overflow-y-auto transition-all duration-300 ease-in-out"
+      [class.w-0]="!sidebarVisible()"
+      [class.-ml-72]="!sidebarVisible()">
+      <div class="p-6 border-b border-gray-200">
+        <h3 class="text-xl font-semibold text-gray-700 m-0">Menú</h3>
+      </div>
+      <p-panelMenu 
+        [model]="menuItems" 
+        class="w-full border-none">
+      </p-panelMenu>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+      <div class="max-w-7xl mx-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
+
