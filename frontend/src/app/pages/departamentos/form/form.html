@@ -28,14 +28,19 @@
       <!-- Campo Jefe -->
       <div class="flex flex-col gap-2">
         <label for="jefe_id" class="font-semibold text-gray-700">
-          Jefe del Departamento
+          Jefe
         </label>
-        <input 
-          pInputText 
-          id="jefe_id" 
+        <p-select
+          id="jefe_id"
           formControlName="jefe_id"
-          placeholder="Ej: 1"
+          [options]="empleados()"
+          optionLabel="nombre"
+          optionValue="id"
+          placeholder="Seleccionar jefe"
+          [showClear]="true"
+          [loading]="loadingEmpleados()"
           class="w-full">
+        </p-select>
         <small class="text-gray-500 text-xs">Campo opcional</small>
       </div>
 
