@@ -155,7 +155,8 @@ export class EmpleadoRepository implements CrudRepository<Empleado>, IEmpleadoRe
             SELECT 
                 e.id, 
                 e.nombre, 
-                e.email, 
+                e.email,
+                e.contrasena, 
                 e.telefono, 
                 e.salario, 
                 e.fecha_ingreso, 
@@ -175,7 +176,8 @@ export class EmpleadoRepository implements CrudRepository<Empleado>, IEmpleadoRe
             SELECT 
                 e.id, 
                 e.nombre, 
-                e.email, 
+                e.email,
+                e.contrasena, 
                 e.telefono, 
                 e.salario, 
                 e.fecha_ingreso, 
