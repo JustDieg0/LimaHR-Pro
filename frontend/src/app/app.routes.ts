@@ -18,7 +18,7 @@ export const routes: Routes = [
       },
       {
         path: 'empleados',
-        loadComponent: () => import('./pages/departamentos/list/list')
+        loadComponent: () => import('./pages/empleados/list/list')
           .then(m => m.List)
       }
     ]

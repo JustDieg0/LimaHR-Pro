@@ -1,0 +1,140 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+      <!-- Campo Nombre -->
+      <div class="flex flex-col gap-2">
+        <label for="nombre" class="font-semibold text-gray-700">
+          Nombre <span class="text-red-500">*</span>
+        </label>
+        <input 
+          pInputText 
+          id="nombre" 
+          formControlName="nombre"
+          placeholder="Ej: Recursos Humanos"
+          class="w-full"
+          [class.ng-invalid]="isFieldInvalid('nombre')"
+          [class.ng-dirty]="isFieldInvalid('nombre')">
+        
+        @if (isFieldInvalid('nombre')) {
+          <small class="text-red-500 text-xs">
+            @if (form.get('nombre')?.errors?.['required']) {
+              El nombre es requerido
+            }
+            @if (form.get('nombre')?.errors?.['minlength']) {
+              Mínimo 3 caracteres
+            }
+          </small>
+        }
+      </div>
+
+      <!-- Campo Email -->
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-semibold text-gray-700">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input 
+          pInputText 
+          id="email" 
+          formControlName="email"
+          placeholder="Ej: example@example.com"
+          class="w-full"
+            [class.ng-invalid]="isFieldInvalid('email')"
+          [class.ng-dirty]="isFieldInvalid('email')">
+        
+        @if (isFieldInvalid('email')) {
+          <small class="text-red-500 text-xs">
+            @if (form.get('email')?.errors?.['required']) {
+              El email es requerido
+            }
+          </small>
+        }
+      </div>
+
+      <!-- Campo Contraseña -->
+      <div class="flex flex-col gap-2">
+        <label for="contrasena" class="font-semibold text-gray-700">
+          Contraseña <span class="text-red-500">*</span>
+        </label>
+        <input 
+          pInputText 
+          id="contrasena" 
+          formControlName="contrasena"
+          placeholder="Ej: TestTest1."
+          class="w-full"
+            [class.ng-invalid]="isFieldInvalid('contrasena')"
+          [class.ng-dirty]="isFieldInvalid('contrasena')">
+        
+        @if (isFieldInvalid('contrasena')) {
+          <small class="text-red-500 text-xs">
+            @if (form.get('contrasena')?.errors?.['required']) {
+              La contraseña es requerida
+            }
+          </small>
+        }
+      </div>
+
+      <!-- Campo Telefono -->
+      <div class="flex flex-col gap-2">
+        <label for="telefono" class="font-semibold text-gray-700">
+          Telefono 
+        </label>
+        <input 
+          pInputText 
+          id="telefono" 
+          formControlName="telefono"
+          placeholder="Ej: 123456789"
+          class="w-full">
+        <small class="text-gray-500 text-xs">Campo opcional</small>
+      </div>
+
+      <!-- Campo Departamento_id -->
+      <div class="flex flex-col gap-2">
+        <label for="departamento_id" class="font-semibold text-gray-700">
+          Departamento
+        </label>
+        <p-select
+          id="departamento_id"
+          formControlName="departamento_id"
+          [options]="departamentos()"
+          optionLabel="nombre"
+          optionValue="id"
+          placeholder="Seleccionar departamento"
+          [showClear]="true"
+          [loading]="loadingDepartamentos()"
+          class="w-full">
+        </p-select>
+        <small class="text-gray-500 text-xs">Campo opcional</small>
+      </div>
+
+      <!-- Campo Salario -->
+      <div class="flex flex-col gap-2">
+        <label for="salario" class="font-semibold text-gray-700">
+          Salario 
+        </label>
+        <input 
+          pInputText 
+          id="salario" 
+          formControlName="salario"
+          placeholder="Ej: 100.00"
+          class="w-full">
+        <small class="text-gray-500 text-xs">Campo opcional</small>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button 
+          label="Cancelar" 
+          icon="pi pi-times"
+          severity="secondary"
+          [text]="true"
+          (onClick)="onCancel()"
+          type="button">
+        </p-button>
+        <p-button 
+          [label]="isEditMode ? 'Actualizar' : 'Crear'"
+          icon="pi pi-check"
+          severity="success"
+          type="submit"
+          [disabled]="form.invalid"
+          [loading]="loading">
+        </p-button>
+      </div>
+    </form>
