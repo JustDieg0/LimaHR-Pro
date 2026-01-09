@@ -47,7 +47,7 @@ router.get("/",
                         message: "Departamentos obtenidos correctamente",
                         data: departamentos,
                     };
-                res.json(response);
+                return res.json(response);
                 }
             }
                 const departamentos = await departamentoService.getAllDepartamentos();
@@ -56,7 +56,7 @@ router.get("/",
                     message: "Departamentos obtenidos correctamente",
                     data: departamentos,
                 };
-            res.json(response);
+                return res.json(response);
         }catch(error){
             next(error);
         }

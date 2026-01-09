@@ -54,7 +54,7 @@ router.get("/",
                 message: "Empleados obtenidos correctamente",
                 data: empleados,
             };
-            res.json(response);
+            return res.json(response);
         } catch (error) {
             next(error);
         }
@@ -85,7 +85,7 @@ router.get("/:id",
                 data: empleado,
             };
 
-            res.json(response);
+            return res.json(response);
         } catch (error) {
             next(error);
         }
