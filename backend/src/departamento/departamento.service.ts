@@ -61,11 +61,11 @@ export class DepartamentoService {
         if (data.nombre || data.jefe_id || data.created_at) {
             const nombreToCheck = data.nombre ? data.nombre.trim() : existingDepartamento.nombre;
 
-            const duplicatedDepartamento = await this.departamentoRepository.getByNombre(nombreToCheck)
+            /*const duplicatedDepartamento = await this.departamentoRepository.getByNombre(nombreToCheck)
 
             if (duplicatedDepartamento) {
                 throw new DuplicateResourceError(`Ya existe un departamento ${nombreToCheck}`);
-            }   
+            }   */
         }
 
         const updateData : Partial<Departamento> = {};
